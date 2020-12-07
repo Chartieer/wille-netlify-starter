@@ -2,22 +2,41 @@ import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 
-export default function Home() {
+import { fetchEntries } from '../utils/contentfulPosts'
+import Post from '../components/Post'
+
+export default function Home({ posts }) {
   return (
     <div className="container">
       <Head>
-        <title>Mongo</title>
+        <title>Mongos sda s dsd </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <Header title="Welcome to my app!" />
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+        <div className="posts">
+          {posts.map((p) => {
+            console.log(p.date)
+            return <Post key={p.date} date={p.date} image={p.image.fields} title={p.Title} />
+          })}
+        </div>
       </main>
 
       <Footer />
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const res = await fetchEntries()
+  const posts = res.map((p) => {
+    return p.fields
+  })
+
+  return {
+    props: {
+      posts,
+    },
+  }
 }
