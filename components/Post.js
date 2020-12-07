@@ -1,9 +1,9 @@
 function Post({ date, image, title }) {
   let { file, description } = image
-
+  console.log(title)
   return (
     <div className="post">
-      <img alt={description} src={`https:${file.url}`} />
+      <img style={{ width: '500px' }} alt={description} src={`https:${file.url}`} />
       <div className="description">{description}</div>
       <div className="text">
         <h2>{title}</h2>

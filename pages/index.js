@@ -18,7 +18,7 @@ export default function Home({ posts }) {
         <div className="posts">
           {posts.map((p) => {
             console.log(p.date)
-            return <Post key={p.date} date={p.date} image={p.image.fields} title={p.Title} />
+            return <Post key={p.date} date={p.date} image={p.image.fields} title={p.title} />
           })}
         </div>
       </main>
